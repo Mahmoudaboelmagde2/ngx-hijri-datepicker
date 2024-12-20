@@ -12,7 +12,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import moment from 'moment-hijri';
 @Component({
   selector: 'lib-ngx-hijri-datepicker',
-  template: `
+  template:   `
 <div
   class="hijri-datepicker-container"
   [ngStyle]="{
