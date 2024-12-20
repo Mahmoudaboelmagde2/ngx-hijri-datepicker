@@ -293,6 +293,13 @@ import moment from 'moment-hijri';
 
   `,
 
+providers: [
+  {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => NgxHijriDatepickerComponent),
+    multi: true,
+  },
+],
 })
 export class NgxHijriDatepickerComponent {
   // Input properties to allow customization by the user
