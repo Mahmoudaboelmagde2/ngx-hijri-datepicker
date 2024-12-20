@@ -1,20 +1,8 @@
 import * as i0 from '@angular/core';
-import { Injectable, EventEmitter, Component, Input, Output, HostListener, NgModule } from '@angular/core';
-import moment from 'moment-hijri';
+import { EventEmitter, Component, Input, Output, HostListener, NgModule } from '@angular/core';
 import * as i1 from '@angular/common';
 import { CommonModule } from '@angular/common';
-
-class NgxHijriDatepickerService {
-    constructor() { }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.13", ngImport: i0, type: NgxHijriDatepickerService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "18.2.13", ngImport: i0, type: NgxHijriDatepickerService, providedIn: 'root' });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.13", ngImport: i0, type: NgxHijriDatepickerService, decorators: [{
-            type: Injectable,
-            args: [{
-                    providedIn: 'root'
-                }]
-        }], ctorParameters: () => [] });
+import moment from 'moment-hijri';
 
 class NgxHijriDatepickerComponent {
     elementRef;
@@ -503,5 +491,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.13", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { NgxHijriDatepickerComponent, NgxHijriDatepickerModule, NgxHijriDatepickerService };
+export { NgxHijriDatepickerComponent, NgxHijriDatepickerModule };
 //# sourceMappingURL=ngx-hijri-datepicker.mjs.map

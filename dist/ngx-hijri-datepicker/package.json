@@ -5,6 +5,21 @@
     "@angular/common": "^18.2.0",
     "@angular/core": "^18.2.0"
   },
-  "main": "fesm2022/ngx-hijri-datepicker.mjs",
-  "typings": "index.d.ts"
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2022/ngx-hijri-datepicker.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/ngx-hijri-datepicker.mjs",
+      "esm": "./esm2022/ngx-hijri-datepicker.mjs",
+      "default": "./fesm2022/ngx-hijri-datepicker.mjs"
+    }
+  }
 }
