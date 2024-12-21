@@ -6,8 +6,9 @@ import {
   Output,
   EventEmitter,
   forwardRef,
+  OnInit,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import moment from 'moment-hijri';
 @Component({
   selector: 'ngx-hijri-datepicker',
@@ -318,7 +319,7 @@ export class NgxHijriDatepickerComponent {
   @Input() DatepickerPopupHeaderColor: string | null= null; // Header color in the popup / لون الرأس في نافذة التقويم
   @Input() displayFormat: string = 'iYYYY/iM/iD'; // تنسيق التاريخ الافتراضي
   @Input() storageFormat: string | null = null; // التنسيق المستخدم للتخزين (افتراضيًا يكون null)
-  @Input() locale:string = 'ar-SA';  // خيار لاختيار اللغة (افتراضي: عربي)
+  @Input() locale: 'en' | 'ar-SA' = 'ar-SA';  // خيار لاختيار اللغة (افتراضي: عربي)
 
   selectedDate: moment.Moment | null = null; // Currently selected date / التاريخ المختار
   showDatePicker = false; // To control visibility of the datepicker popup / التحكم في إظهار التقويم
