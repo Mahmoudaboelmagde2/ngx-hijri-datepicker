@@ -14,6 +14,7 @@
 - Separate locales for display and storage
 - Emits selected date values through `EventEmitter`
 - Supports two-way data binding using `[(value)]`
+- Supports Reactive Forms using `formControlName=''`
 - Responsive and accessible design
 
 ---
