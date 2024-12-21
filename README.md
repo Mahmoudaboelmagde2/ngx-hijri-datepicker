@@ -21,8 +21,9 @@ NgxHijriDatepickerModule is an Angular module for selecting Hijri dates. This mo
 
 ## Installation
 Install the datepicker module:
-
+```typescript
 npm i ngx-hijri-datepicker
+
 Then, import the module in your Angular project:
 ```typescript
 import { NgxHijriDatepickerModule } from 'ngx-hijri-datepicker';
