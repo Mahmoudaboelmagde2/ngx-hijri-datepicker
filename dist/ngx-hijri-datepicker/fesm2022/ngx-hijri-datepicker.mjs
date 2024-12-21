@@ -44,6 +44,7 @@ class NgxHijriDatepickerComponent {
     // **Initial setup on component load**
     // **إعداد مبدئي عند تحميل المكون**
     ngOnInit() {
+        moment.locale(this.locale); // ضبط locale بناءً على اللغة المختارة
         if (this.value) {
             this.selectedDate = moment(this.value, this.displayFormat).locale(this.locale);
             ; // Parse the initial value / تحويل القيمة الأولية لتاريخ
@@ -108,7 +109,7 @@ class NgxHijriDatepickerComponent {
     toggleDatePicker() {
         this.currentViewDate = this.selectedDate
             ? this.selectedDate.clone().locale(this.locale)
-            : moment(); // Set to current date if no date is selected / عرض الشهر الحالي إذا لم يتم اختيار تاريخ
+            : moment().locale(this.locale); // Set to current date if no date is selected / عرض الشهر الحالي إذا لم يتم اختيار تاريخ
         this.showDatePicker = !this.showDatePicker; // Toggle visibility / تبديل الحالة
     }
     // **Method: Close the popup when clicking outside**
