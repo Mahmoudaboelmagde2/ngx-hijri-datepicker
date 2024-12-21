@@ -330,8 +330,12 @@ export class NgxHijriDatepickerComponent {
 
   // أسماء الأيام (اختصار)
   // Short names for days of the week
-  dayNamesMin: string[] = ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'];
-
+  // Getter لتحديد أسماء الأيام بناءً على اللغة
+  get dayNamesMin(): string[] {
+    return this.locale === 'ar-SA'
+      ? ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س']  // عربي
+      : ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];  // إنجليزي
+  }
   constructor(private elementRef: ElementRef) {}
 
   // **Initial setup on component load**

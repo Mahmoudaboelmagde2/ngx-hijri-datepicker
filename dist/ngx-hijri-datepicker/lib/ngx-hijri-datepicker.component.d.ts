@@ -23,7 +23,7 @@ export declare class NgxHijriDatepickerComponent {
     currentViewDate: moment.Moment;
     onChange: (value: string) => void;
     onTouched: () => void;
-    dayNamesMin: string[];
+    get dayNamesMin(): string[];
     constructor(elementRef: ElementRef);
     ngOnInit(): void;
     get resolvedStorageFormat(): string;

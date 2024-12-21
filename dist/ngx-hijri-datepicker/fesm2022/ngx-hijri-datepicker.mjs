@@ -32,7 +32,12 @@ class NgxHijriDatepickerComponent {
     onTouched = () => { }; // Placeholder for Reactive Forms' touch event / واجهة للتعامل مع لمسة الحقل في Reactive Forms
     // أسماء الأيام (اختصار)
     // Short names for days of the week
-    dayNamesMin = ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'];
+    // Getter لتحديد أسماء الأيام بناءً على اللغة
+    get dayNamesMin() {
+        return this.locale === 'ar-SA'
+            ? ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'] // عربي
+            : ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']; // إنجليزي
+    }
     constructor(elementRef) {
         this.elementRef = elementRef;
     }
