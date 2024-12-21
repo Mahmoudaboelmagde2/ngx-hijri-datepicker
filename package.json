@@ -1,6 +1,6 @@
 {
   "name": "ngx-hijri-datepicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Hijri datepicker component for Angular applications",
   "author": "Mahmoud Abo Elmagd",
   "license": "MIT",
