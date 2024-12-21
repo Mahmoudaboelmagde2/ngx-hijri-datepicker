@@ -2,7 +2,7 @@
 
 ## Overview
 
-`NgxHijriDatepickerModule` is an Angular module for selecting Hijri dates. This module allows for customization of the appearance and behavior through various `@Input` properties. Additionally, it supports different locales for displaying and storing dates.
+NgxHijriDatepickerModule is an Angular module for selecting Hijri dates. This module allows for customization of the appearance and behavior through various @Input properties. Additionally, it supports different locales for displaying and storing dates. The module also fully supports Arabic, Islamic, and Hijri month names, providing an authentic experience for users who prefer the Hijri calendar. This module allows for customization of the appearance and behavior through various @Input properties. Additionally, it supports different locales for displaying and storing dates.
 
 ---
 
