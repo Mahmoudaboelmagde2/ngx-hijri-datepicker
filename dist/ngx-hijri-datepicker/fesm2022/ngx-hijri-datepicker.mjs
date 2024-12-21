@@ -24,6 +24,7 @@ class NgxHijriDatepickerComponent {
     displayFormat = 'iYYYY/iM/iD'; // تنسيق التاريخ الافتراضي
     storageFormat = null; // التنسيق المستخدم للتخزين (افتراضيًا يكون null)
     locale = 'ar-SA'; // خيار لاختيار اللغة (افتراضي: عربي)
+    storageLocale = 'en'; // لغة التخزين
     selectedDate = null; // Currently selected date / التاريخ المختار
     showDatePicker = false; // To control visibility of the datepicker popup / التحكم في إظهار التقويم
     currentViewDate = moment().locale(this.locale);
@@ -100,8 +101,8 @@ class NgxHijriDatepickerComponent {
     selectDate(day) {
         if (day) {
             this.selectedDate = day.locale(this.locale);
-            const storedValue = this.selectedDate.format(this.resolvedStorageFormat); // القيمة لتخزينها في قاعدة البيانات
-            const displayValue = this.selectedDate.format(this.displayFormat); // القيمة لعرضها
+            const storedValue = this.selectedDate.locale(this.storageLocale).format(this.resolvedStorageFormat); // القيمة لتخزينها في قاعدة البيانات
+            const displayValue = this.selectedDate.locale(this.locale).format(this.displayFormat); // القيمة لعرضها
             this.onChange(storedValue); // إرسال القيمة المخزنة إلى النموذج
             this.valueChange.emit(storedValue); // إرسال القيمة المخزنة
             this.showDatePicker = false; // إغلاق نافذة التقويم
@@ -132,8 +133,8 @@ class NgxHijriDatepickerComponent {
     // **طريقة: اختيار تاريخ اليوم**
     selectToday() {
         this.selectedDate = moment().locale(this.locale); // Set the date to today / تعيين التاريخ إلى اليوم
-        const storedValue = this.selectedDate.format(this.resolvedStorageFormat);
-        const displayValue = this.selectedDate.format(this.displayFormat);
+        const storedValue = this.selectedDate.locale(this.storageLocale).format(this.resolvedStorageFormat);
+        const displayValue = this.selectedDate.locale(this.storageLocale).format(this.displayFormat);
         this.onChange(storedValue); // Emit the value for Reactive Forms / إرسال القيمة إلى Reactive Forms
         this.valueChange.emit(storedValue); // Emit the value for standalone usage / إرسال القيمة عند الاستخدام الفردي
         this.showDatePicker = false; // Close the popup / إغلاق نافذة التقويم
@@ -160,7 +161,7 @@ class NgxHijriDatepickerComponent {
         this.onTouched = fn; // Store the callback function / تخزين دالة اللمس
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: NgxHijriDatepickerComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: NgxHijriDatepickerComponent, selector: "ngx-hijri-datepicker", inputs: { value: "value", placeholder: "placeholder", width: "width", height: "height", InputColor: "InputColor", InputBackgroundColor: "InputBackgroundColor", IconColor: "IconColor", IconBackgroundColor: "IconBackgroundColor", DayColor: "DayColor", BorderColor: "BorderColor", DatepickerPopupHeaderColor: "DatepickerPopupHeaderColor", displayFormat: "displayFormat", storageFormat: "storageFormat", locale: "locale" }, outputs: { valueChange: "valueChange" }, host: { listeners: { "document:click": "onDocumentClick($event.target)" } }, providers: [
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: NgxHijriDatepickerComponent, selector: "ngx-hijri-datepicker", inputs: { value: "value", placeholder: "placeholder", width: "width", height: "height", InputColor: "InputColor", InputBackgroundColor: "InputBackgroundColor", IconColor: "IconColor", IconBackgroundColor: "IconBackgroundColor", DayColor: "DayColor", BorderColor: "BorderColor", DatepickerPopupHeaderColor: "DatepickerPopupHeaderColor", displayFormat: "displayFormat", storageFormat: "storageFormat", locale: "locale", storageLocale: "storageLocale" }, outputs: { valueChange: "valueChange" }, host: { listeners: { "document:click": "onDocumentClick($event.target)" } }, providers: [
             {
                 provide: NG_VALUE_ACCESSOR,
                 useExisting: forwardRef(() => NgxHijriDatepickerComponent),
@@ -492,6 +493,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImpo
             }], storageFormat: [{
                 type: Input
             }], locale: [{
+                type: Input
+            }], storageLocale: [{
                 type: Input
             }], onDocumentClick: [{
                 type: HostListener,

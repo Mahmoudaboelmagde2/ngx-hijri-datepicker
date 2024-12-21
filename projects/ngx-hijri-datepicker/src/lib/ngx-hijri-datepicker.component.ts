@@ -320,6 +320,7 @@ export class NgxHijriDatepickerComponent {
   @Input() displayFormat: string = 'iYYYY/iM/iD'; // تنسيق التاريخ الافتراضي
   @Input() storageFormat: string | null = null; // التنسيق المستخدم للتخزين (افتراضيًا يكون null)
   @Input() locale: 'en' | 'ar-SA' = 'ar-SA';  // خيار لاختيار اللغة (افتراضي: عربي)
+  @Input() storageLocale: 'en' | 'ar-SA' = 'en';  // لغة التخزين
 
   selectedDate: moment.Moment | null = null; // Currently selected date / التاريخ المختار
   showDatePicker = false; // To control visibility of the datepicker popup / التحكم في إظهار التقويم
@@ -401,8 +402,8 @@ export class NgxHijriDatepickerComponent {
   selectDate(day: moment.Moment | null) {
     if (day) {
       this.selectedDate = day.locale(this.locale);
-      const storedValue = this.selectedDate.format(this.resolvedStorageFormat); // القيمة لتخزينها في قاعدة البيانات
-      const displayValue = this.selectedDate.format(this.displayFormat); // القيمة لعرضها
+      const storedValue = this.selectedDate.locale(this.storageLocale).format(this.resolvedStorageFormat); // القيمة لتخزينها في قاعدة البيانات
+      const displayValue = this.selectedDate.locale(this.locale).format(this.displayFormat); // القيمة لعرضها
 
       this.onChange(storedValue); // إرسال القيمة المخزنة إلى النموذج
       this.valueChange.emit(storedValue); // إرسال القيمة المخزنة
@@ -440,8 +441,8 @@ export class NgxHijriDatepickerComponent {
   // **طريقة: اختيار تاريخ اليوم**
   selectToday() {
     this.selectedDate = moment().locale(this.locale); // Set the date to today / تعيين التاريخ إلى اليوم
-    const storedValue = this.selectedDate.format(this.resolvedStorageFormat);
-    const displayValue = this.selectedDate.format(this.displayFormat);
+    const storedValue = this.selectedDate.locale(this.storageLocale).format(this.resolvedStorageFormat);
+    const displayValue = this.selectedDate.locale(this.storageLocale).format(this.displayFormat);
     this.onChange(storedValue); // Emit the value for Reactive Forms / إرسال القيمة إلى Reactive Forms
     this.valueChange.emit(storedValue); // Emit the value for standalone usage / إرسال القيمة عند الاستخدام الفردي
     this.showDatePicker = false; // Close the popup / إغلاق نافذة التقويم
