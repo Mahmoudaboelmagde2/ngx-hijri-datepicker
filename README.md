@@ -178,5 +178,5 @@ You can style the component by overriding CSS variables or customizing the SCSS 
 
 ## License
 
-MIT
+This project is  free to use, modify, and distribute the software. However, the software is provided "as is", without warranty of any kind, express or implied.
 
