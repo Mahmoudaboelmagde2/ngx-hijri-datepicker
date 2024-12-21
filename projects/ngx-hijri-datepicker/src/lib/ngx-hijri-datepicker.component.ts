@@ -310,19 +310,20 @@ export class NgxHijriDatepickerComponent {
   @Input() placeholder: string = 'اختر تاريخ هجري'; // Placeholder text / النص الافتراضي للحقل
   @Input() width: string = '250px'; // Width of the input field / عرض الحقل
   @Input() height: string = '40px'; // Height of the input field / ارتفاع الحقل
-  @Input() InputColor: string = '#000'; // Input text color / لون النص في الحقل
-  @Input() InputBackgroundColor: string = '#fff'; // Input background color / لون خلفية الحقل
-  @Input() IconColor: string = '#fff'; // Icon color / لون الأيقونة
-  @Input() IconBackgroundColor: string = '#000'; // Icon background color / لون خلفية الأيقونة
-  @Input() DayColor: string = '#000'; // Day color in calendar / لون الأيام في التقويم
-  @Input() BorderColor: string = '#000'; // Border color for input and popup / لون الحدود
-  @Input() DatepickerPopupHeaderColor: string = '#000'; // Header color in the popup / لون الرأس في نافذة التقويم
+  @Input() InputColor: string | null = null; // Input text color / لون النص في الحقل
+  @Input() InputBackgroundColor: string | null= null; // Input background color / لون خلفية الحقل
+  @Input() IconColor: string | null= null; // Icon color / لون الأيقونة
+  @Input() IconBackgroundColor: string| null = null; // Icon background color / لون خلفية الأيقونة
+  @Input() DayColor: string| null= null; // Day color in calendar / لون الأيام في التقويم
+  @Input() BorderColor: string | null= null; // Border color for input and popup / لون الحدود
+  @Input() DatepickerPopupHeaderColor: string | null= null; // Header color in the popup / لون الرأس في نافذة التقويم
   @Input() displayFormat: string = 'iYYYY/iM/iD'; // تنسيق التاريخ الافتراضي
   @Input() storageFormat: string | null = null; // التنسيق المستخدم للتخزين (افتراضيًا يكون null)
+  @Input() locale: 'en' | 'ar' = 'ar';  // خيار لاختيار اللغة (افتراضي: عربي)
 
   selectedDate: moment.Moment | null = null; // Currently selected date / التاريخ المختار
   showDatePicker = false; // To control visibility of the datepicker popup / التحكم في إظهار التقويم
-  currentViewDate: moment.Moment = moment(); // Currently displayed month in the popup / الشهر الحالي المعروض
+  currentViewDate: moment.Moment = moment().locale(this.locale);; // Currently displayed month in the popup / الشهر الحالي المعروض
 
   onChange = (value: string) => {}; // Placeholder for Reactive Forms' change event / واجهة للتعامل مع التغييرات في Reactive Forms
   onTouched = () => {}; // Placeholder for Reactive Forms' touch event / واجهة للتعامل مع لمسة الحقل في Reactive Forms
@@ -337,7 +338,7 @@ export class NgxHijriDatepickerComponent {
   // **إعداد مبدئي عند تحميل المكون**
   ngOnInit() {
     if (this.value) {
-      this.selectedDate = moment(this.value, this.displayFormat); // Parse the initial value / تحويل القيمة الأولية لتاريخ
+      this.selectedDate = moment(this.value, this.displayFormat).locale(this.locale);; // Parse the initial value / تحويل القيمة الأولية لتاريخ
       this.currentViewDate = this.selectedDate.clone(); // Set the view date to the selected date / عرض الشهر الخاص بالتاريخ المختار
     }
   }
@@ -348,7 +349,7 @@ export class NgxHijriDatepickerComponent {
   // **Property: Display the current month's name in Hijri format**
   // **خاصية: عرض اسم الشهر الحالي بالتنسيق الهجري**
   get currentMonthName(): string {
-    return this.currentViewDate.format('iMMMM iYYYY'); // Format the current month / صيغة اسم الشهر الحالي
+    return this.currentViewDate.locale(this.locale).format('iMMMM iYYYY'); // Format the current month / صيغة اسم الشهر الحالي
   }
 
   // **Property: Calculate and return days of the current month**
@@ -370,7 +371,7 @@ export class NgxHijriDatepickerComponent {
     // إضافة الأيام الفعلية للشهر الحالي
     const totalDays = endOfMonth.iDate();
     for (let d = 1; d <= totalDays; d++) {
-      days.push(startOfMonth.clone().iDate(d));
+      days.push(startOfMonth.clone().iDate(d).locale(this.locale));
     }
 
     return days;
@@ -379,20 +380,20 @@ export class NgxHijriDatepickerComponent {
   // **Method: Navigate to the previous month**
   // **طريقة: الانتقال إلى الشهر السابق**
   prevMonth() {
-    this.currentViewDate = this.currentViewDate.clone().subtract(1, 'iMonth');
+    this.currentViewDate = this.currentViewDate.clone().subtract(1, 'iMonth').locale(this.locale);;
   }
 
   // **Method: Navigate to the next month**
   // **طريقة: الانتقال إلى الشهر التالي**
   nextMonth() {
-    this.currentViewDate = this.currentViewDate.clone().add(1, 'iMonth');
+    this.currentViewDate = this.currentViewDate.clone().add(1, 'iMonth').locale(this.locale);;
   }
 
   // **Method: Select a specific date**
   // **طريقة: اختيار تاريخ معين**
   selectDate(day: moment.Moment | null) {
     if (day) {
-      this.selectedDate = day;
+      this.selectedDate = day.locale(this.locale);
       const storedValue = this.selectedDate.format(this.resolvedStorageFormat); // القيمة لتخزينها في قاعدة البيانات
       const displayValue = this.selectedDate.format(this.displayFormat); // القيمة لعرضها
 
@@ -407,7 +408,7 @@ export class NgxHijriDatepickerComponent {
   // **طريقة: فتح/إغلاق التقويم**
   toggleDatePicker() {
     this.currentViewDate = this.selectedDate
-      ? this.selectedDate.clone()
+      ? this.selectedDate.clone().locale(this.locale)
       : moment(); // Set to current date if no date is selected / عرض الشهر الحالي إذا لم يتم اختيار تاريخ
     this.showDatePicker = !this.showDatePicker; // Toggle visibility / تبديل الحالة
   }
@@ -425,13 +426,13 @@ export class NgxHijriDatepickerComponent {
   // **Property: Display the selected date in the input field**
   // **خاصية: عرض التاريخ المختار في الحقل**
   get displayedDate(): string {
-    return this.selectedDate ? this.selectedDate.format(this.displayFormat) : ''; // Display formatted date or empty string / عرض التاريخ أو تركه فارغاً
+    return this.selectedDate ? this.selectedDate.locale(this.locale).format(this.displayFormat) : ''; // Display formatted date or empty string / عرض التاريخ أو تركه فارغاً
   }
 
   // **Method: Select today's date**
   // **طريقة: اختيار تاريخ اليوم**
   selectToday() {
-    this.selectedDate = moment(); // Set the date to today / تعيين التاريخ إلى اليوم
+    this.selectedDate = moment().locale(this.locale); // Set the date to today / تعيين التاريخ إلى اليوم
     const storedValue = this.selectedDate.format(this.resolvedStorageFormat);
     const displayValue = this.selectedDate.format(this.displayFormat);
     this.onChange(storedValue); // Emit the value for Reactive Forms / إرسال القيمة إلى Reactive Forms
@@ -443,7 +444,7 @@ export class NgxHijriDatepickerComponent {
   // **واجهة: تعيين قيمة جديدة**
   writeValue(value: string): void {
     if (value) {
-      this.selectedDate = moment(value, this.resolvedStorageFormat); // تحويل القيمة إلى لحظة بناءً على التنسيق
+      this.selectedDate = moment(value, this.resolvedStorageFormat).locale(this.locale); // تحويل القيمة إلى لحظة بناءً على التنسيق
       this.currentViewDate = this.selectedDate.clone(); // Set the current view date / تعيين عرض الشهر
     } else {
       this.selectedDate = null; // Clear the selected date / مسح التاريخ المختار
