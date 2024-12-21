@@ -1,0 +1,35 @@
+# استبعاد ملفات التكوين
+.angular/
+.vscode/
+.idea/
+.editorconfig
+
+# استبعاد ملفات البناء والتصحيح
+coverage/
+node_modules/
+tmp/
+out/
+logs/
+*.tgz
+
+# استبعاد الاختبارات والبيانات الوهمية
+src/**/*.spec.ts
+src/**/*.mock.ts
+
+# استبعاد ملفات التوثيق والبيانات المؤقتة
+README.md~
+*.log
+*.bak
+*.swp
+
+# استبعاد ملفات TypeScript المصدرية (رفع الملفات المترجمة فقط)
+src/**/*.ts
+!src/**/*.d.ts  # الاحتفاظ بملفات التعريف (types)
+
+# استبعاد ملفات بيئة العمل
+.env
+.env.*
+.DS_Store
+
+# استبعاد ملفات الحزمة
+package-lock.json

@@ -1,8 +1,18 @@
 {
   "name": "ngx-hijri-datepicker",
   "version": "1.0.0",
+  "description": "A Hijri datepicker component for Angular applications",
+  "author": "Mahmoud Abo Elmagd",
+  "license": "MIT",
   "main": "dist/ngx-hijri-datepicker/fesm2022/ngx-hijri-datepicker.mjs",
+  "module": "dist/ngx-hijri-datepicker/esm2020/ngx-hijri-datepicker.mjs",
+  "types": "dist/ngx-hijri-datepicker/index.d.ts",
   "typings": "dist/ngx-hijri-datepicker/index.d.ts",
+  "keywords": ["angular", "hijri", "datepicker", "ngx", "moment-hijri"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mahmoudaboelmagde2/ngx-hijri-datepicker.git"
+  },
   "exports": {
     ".": {
       "types": "./dist/ngx-hijri-datepicker/index.d.ts",
@@ -13,12 +23,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "build-library": "ng build ngx-hijri-datepicker",
-    "test": "ng test"
+    "build": "ng build ngx-hijri-datepicker",
+    "publish:npm": "npm publish --access public",
+        "test": "ng test"
   },
-  "private": true,
+
+  "private": false,
   "dependencies": {
     "@angular/animations": "^17.0.0",
     "@angular/common": "^17.0.0",
