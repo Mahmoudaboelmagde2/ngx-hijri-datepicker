@@ -1,27 +1,146 @@
-# NgxHijriDatepicker
+# NgxHijriDatepicker - Hijri Datepicker 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+## Overview
+`NgxHijriDatepickerComponent` is an Angular component for selecting Hijri dates. This component allows for customization of the appearance and behavior through various `@Input` properties. Additionally, it supports different locales for displaying and storing dates.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
+- Hijri date selection using `moment-hijri`
+- Fully customizable via `@Input` properties
+- Supports Arabic and English locales
+- Separate locales for display and storage
+- Emits selected date values through `EventEmitter`
+- Responsive and accessible design
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
+```bash
+npm install moment-hijri
+```
 
-## Build
+Add `moment-hijri` to your Angular project and import the component.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## Usage
+```html
+<ngx-hijri-datepicker
+  [value]="selectedDate"
+  [locale]="'ar-SA'"
+  [storageLocale]="'en'"
+  [placeholder]="'اختر تاريخ'"
+  [width]="'300px'"
+  [InputColor]="'#000'"
+  [IconColor]="'#fff'"
+  (valueChange)="onDateSelected($event)"
+></ngx-hijri-datepicker>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## API Documentation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Inputs
 
-## Further help
+| Property                      | Type                  | Default       | Description                                                                 |
+|-------------------------------|-----------------------|---------------|-----------------------------------------------------------------------------|
+| `value`                       | `string \| null`       | `null`        | The initial value for the datepicker.                                        |
+| `locale`                      | `'en' \| 'ar-SA'`      | `'ar-SA'`     | Locale for displaying the date (Arabic or English).                         |
+| `storageLocale`               | `'en' \| 'ar-SA'`      | `'en'`        | Locale for storing the selected date.                                        |
+| `placeholder`                 | `string`              | `'اختر تاريخ هجري'`| Placeholder text for the input field.                                        |
+| `width`                       | `string`              | `'250px'`     | Width of the datepicker component.                                           |
+| `height`                      | `string`              | `'40px'`      | Height of the input field.                                                   |
+| `InputColor`                  | `string \| null`       | `null`        | Text color for the input field.                                              |
+| `InputBackgroundColor`        | `string \| null`       | `null`        | Background color for the input field.                                        |
+| `IconColor`                   | `string \| null`       | `null`        | Color of the calendar icon.                                                  |
+| `IconBackgroundColor`         | `string \| null`       | `null`        | Background color for the calendar icon.                                      |
+| `DayColor`                    | `string \| null`       | `null`        | Text color for days in the calendar.                                         |
+| `BorderColor`                 | `string \| null`       | `null`        | Border color for the input and popup.                                        |
+| `DatepickerPopupHeaderColor`  | `string \| null`       | `null`        | Header color in the datepicker popup.                                        |
+| `displayFormat`               | `string`              | `'iYYYY/iM/iD'`| Format for displaying the date in the input field.                          |
+| `storageFormat`               | `string \| null`       | `null`        | Format for storing the selected date (uses `displayFormat` if not specified).|
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Outputs
+
+| Property       | Type                      | Description                                                   |
+|----------------|---------------------------|---------------------------------------------------------------|
+| `valueChange`  | `EventEmitter<string>`     | Emits the selected date when it changes.                       |
+
+---
+
+## Methods
+
+### `selectDate(day: moment.Moment | null)`
+- **Description:** Selects a specific date from the calendar.
+- **Behavior:**
+  - Sets `selectedDate` to the chosen date.
+  - Stores the date in the format and locale specified by `storageLocale`.
+  - Emits the stored value using `valueChange`.
+
+---
+
+### `toggleDatePicker()`
+- **Description:** Toggles the visibility of the datepicker popup.
+- **Behavior:**
+  - Opens the calendar if closed, and closes it if open.
+
+---
+
+### `selectToday()`
+- **Description:** Sets the selected date to today's date.
+- **Behavior:**
+  - Uses the current date in the Hijri calendar.
+  - Applies the locale for display and storage as per `locale` and `storageLocale`.
+
+---
+
+### `writeValue(value: string)`
+- **Description:** Updates the component when a new value is written programmatically (Reactive Forms).
+- **Behavior:**
+  - Parses the input value and updates the displayed date.
+
+---
+
+## Example with Reactive Forms
+```html
+<form [formGroup]="dateForm">
+  <ngx-hijri-datepicker
+    formControlName="hijriDate"
+    [locale]="'en'"
+    [storageLocale]="'en'"
+  ></ngx-hijri-datepicker>
+</form>
+```
+```typescript
+this.dateForm = this.fb.group({
+  hijriDate: [''],
+});
+```
+
+---
+
+## Notes
+- The `locale` property affects the **display** of the date (e.g., Arabic or English numerals and names).
+- The `storageLocale` property affects the **format** and **language** in which the date is stored.
+- If no `storageFormat` is provided, the component uses `displayFormat` as the default for storing dates.
+- The component listens for clicks outside the calendar to close the popup automatically.
+
+---
+
+## Customization
+You can style the component by overriding CSS variables or customizing the SCSS directly. The key CSS classes are:
+- `.hijri-datepicker-container` – Container for the component.
+- `.datepicker-input` – Input field.
+- `.datepicker-popup` – Popup containing the calendar.
+- `.iconClender` – Calendar icon.
+- `.day` – Individual day in the calendar.
+- `.selected` – Style for the selected day.
+
+---
+
+## License
+MIT
+
+
