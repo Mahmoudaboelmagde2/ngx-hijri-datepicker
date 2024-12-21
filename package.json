@@ -1,9 +1,9 @@
 {
   "name": "ngx-hijri-datepicker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Hijri datepicker component for Angular applications",
   "author": "Mahmoud Abo Elmagd",
-  "license": "MIT",
+  "license": "FREE",
   "main": "dist/ngx-hijri-datepicker/fesm2022/ngx-hijri-datepicker.mjs",
   "module": "dist/ngx-hijri-datepicker/esm2020/ngx-hijri-datepicker.mjs",
   "types": "dist/ngx-hijri-datepicker/index.d.ts",
