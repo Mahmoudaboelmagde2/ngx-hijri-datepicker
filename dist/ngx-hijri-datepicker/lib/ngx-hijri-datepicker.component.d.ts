@@ -17,7 +17,7 @@ export declare class NgxHijriDatepickerComponent {
     DatepickerPopupHeaderColor: string | null;
     displayFormat: string;
     storageFormat: string | null;
-    locale: 'en' | 'ar';
+    locale: string;
     selectedDate: moment.Moment | null;
     showDatePicker: boolean;
     currentViewDate: moment.Moment;

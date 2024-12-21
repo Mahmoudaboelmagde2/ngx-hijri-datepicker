@@ -23,7 +23,7 @@ class NgxHijriDatepickerComponent {
     DatepickerPopupHeaderColor = null; // Header color in the popup / لون الرأس في نافذة التقويم
     displayFormat = 'iYYYY/iM/iD'; // تنسيق التاريخ الافتراضي
     storageFormat = null; // التنسيق المستخدم للتخزين (افتراضيًا يكون null)
-    locale = 'ar'; // خيار لاختيار اللغة (افتراضي: عربي)
+    locale = 'ar-SA'; // خيار لاختيار اللغة (افتراضي: عربي)
     selectedDate = null; // Currently selected date / التاريخ المختار
     showDatePicker = false; // To control visibility of the datepicker popup / التحكم في إظهار التقويم
     currentViewDate = moment().locale(this.locale);
