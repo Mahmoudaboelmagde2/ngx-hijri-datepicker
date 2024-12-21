@@ -28,6 +28,7 @@ class NgxHijriDatepickerComponent {
     showDatePicker = false; // To control visibility of the datepicker popup / التحكم في إظهار التقويم
     currentViewDate = moment().locale(this.locale);
     ; // Currently displayed month in the popup / الشهر الحالي المعروض
+    todayBtn = 'اليوم';
     onChange = (value) => { }; // Placeholder for Reactive Forms' change event / واجهة للتعامل مع التغييرات في Reactive Forms
     onTouched = () => { }; // Placeholder for Reactive Forms' touch event / واجهة للتعامل مع لمسة الحقل في Reactive Forms
     // أسماء الأيام (اختصار)
@@ -50,6 +51,8 @@ class NgxHijriDatepickerComponent {
             ; // Parse the initial value / تحويل القيمة الأولية لتاريخ
             this.currentViewDate = this.selectedDate.clone(); // Set the view date to the selected date / عرض الشهر الخاص بالتاريخ المختار
         }
+        if (this.locale == 'en')
+            this.todayBtn = 'Today';
     }
     // إذا لم يتم تمرير `storageFormat` من المستخدم، نستخدم `displayFormat` كقيمة افتراضية
     get resolvedStorageFormat() {
@@ -301,7 +304,7 @@ class NgxHijriDatepickerComponent {
     <!-- زر لتحديد اليوم الحالي -->
     <div class="today-button">
       <a (click)="selectToday()"
-      >اليوم</a>
+      >{{todayBtn}}</a>
     </div>
   </div>
 </div>
@@ -448,7 +451,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImpo
     <!-- زر لتحديد اليوم الحالي -->
     <div class="today-button">
       <a (click)="selectToday()"
-      >اليوم</a>
+      >{{todayBtn}}</a>
     </div>
   </div>
 </div>

@@ -150,7 +150,7 @@ import moment from 'moment-hijri';
     <!-- زر لتحديد اليوم الحالي -->
     <div class="today-button">
       <a (click)="selectToday()"
-      >اليوم</a>
+      >{{todayBtn}}</a>
     </div>
   </div>
 </div>
@@ -324,7 +324,7 @@ export class NgxHijriDatepickerComponent {
   selectedDate: moment.Moment | null = null; // Currently selected date / التاريخ المختار
   showDatePicker = false; // To control visibility of the datepicker popup / التحكم في إظهار التقويم
   currentViewDate: moment.Moment = moment().locale(this.locale);; // Currently displayed month in the popup / الشهر الحالي المعروض
-
+  todayBtn:string = 'اليوم'
   onChange = (value: string) => {}; // Placeholder for Reactive Forms' change event / واجهة للتعامل مع التغييرات في Reactive Forms
   onTouched = () => {}; // Placeholder for Reactive Forms' touch event / واجهة للتعامل مع لمسة الحقل في Reactive Forms
 
@@ -346,6 +346,8 @@ export class NgxHijriDatepickerComponent {
       this.selectedDate = moment(this.value, this.displayFormat).locale(this.locale);; // Parse the initial value / تحويل القيمة الأولية لتاريخ
       this.currentViewDate = this.selectedDate.clone(); // Set the view date to the selected date / عرض الشهر الخاص بالتاريخ المختار
     }
+    if(this.locale == 'en')
+      this.todayBtn = 'Today'
   }
   // إذا لم يتم تمرير `storageFormat` من المستخدم، نستخدم `displayFormat` كقيمة افتراضية
   get resolvedStorageFormat(): string {

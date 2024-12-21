@@ -21,6 +21,7 @@ export declare class NgxHijriDatepickerComponent {
     selectedDate: moment.Moment | null;
     showDatePicker: boolean;
     currentViewDate: moment.Moment;
+    todayBtn: string;
     onChange: (value: string) => void;
     onTouched: () => void;
     get dayNamesMin(): string[];
