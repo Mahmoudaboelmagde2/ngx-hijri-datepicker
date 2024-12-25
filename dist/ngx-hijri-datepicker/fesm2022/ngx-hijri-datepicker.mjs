@@ -295,7 +295,7 @@ class NgxHijriDatepickerComponent {
     <!-- عنوان الشهر وأزرار التنقل -->
     <div class="header">
       <a (click)="prevMonth()">&lt;</a>
-      <span   [ngStyle]="{
+      <span (click)="toggleYearPopup()"   [ngStyle]="{
         color: DayColor
       }">{{ currentMonthName }}</span>
       <a (click)="nextMonth()">&gt;</a>
@@ -449,7 +449,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImpo
     <!-- عنوان الشهر وأزرار التنقل -->
     <div class="header">
       <a (click)="prevMonth()">&lt;</a>
-      <span   [ngStyle]="{
+      <span (click)="toggleYearPopup()"   [ngStyle]="{
         color: DayColor
       }">{{ currentMonthName }}</span>
       <a (click)="nextMonth()">&gt;</a>

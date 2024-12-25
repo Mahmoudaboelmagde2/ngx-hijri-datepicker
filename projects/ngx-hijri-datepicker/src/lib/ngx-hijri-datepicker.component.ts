@@ -122,7 +122,7 @@ import moment from 'moment-hijri';
     <!-- عنوان الشهر وأزرار التنقل -->
     <div class="header">
       <a (click)="prevMonth()">&lt;</a>
-      <span   [ngStyle]="{
+      <span (click)="toggleYearPopup()"   [ngStyle]="{
         color: DayColor
       }">{{ currentMonthName }}</span>
       <a (click)="nextMonth()">&gt;</a>
