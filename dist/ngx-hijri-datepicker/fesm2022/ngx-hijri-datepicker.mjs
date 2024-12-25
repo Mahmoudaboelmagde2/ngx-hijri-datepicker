@@ -165,13 +165,15 @@ class NgxHijriDatepickerComponent {
         this.showYearPopup = !this.showYearPopup;
     }
     selectYear(year) {
-        this.currentViewDate = this.currentViewDate.clone().iYear(year);
+        this.currentViewDate = moment(this.currentViewDate).iYear(year); // تحديث باستخدام moment مباشرة
+        this.selectedDate = this.currentViewDate.clone(); // تحديث التاريخ المختار أيضًا
         this.showYearPopup = false;
+        this.onChange(this.selectedDate.format('iYYYY/iM/iD')); // إرسال التغيير إلى الـ formControl
     }
     get hijriYears() {
         const currentYear = moment().iYear();
-        const startYear = currentYear - 50;
-        const endYear = currentYear + 50;
+        const startYear = currentYear - 1446;
+        const endYear = currentYear + 100;
         const years = [];
         for (let i = startYear; i <= endYear; i++) {
             years.push(i);
