@@ -127,7 +127,14 @@ import moment from 'moment-hijri';
       }">{{ currentMonthName }}</span>
       <a (click)="nextMonth()">&gt;</a>
     </div>
-
+<!-- Popup لاختيار السنة -->
+<div class="year-popup" *ngIf="showYearPopup">
+  <div class="year-list">
+    <div *ngFor="let year of hijriYears" (click)="selectYear(year)">
+      {{ year }}
+    </div>
+  </div>
+</div>
     <!-- أسماء أيام الأسبوع -->
     <div class="weekdays">
       <div       [ngStyle]="{
@@ -156,7 +163,33 @@ import moment from 'moment-hijri';
 </div>
 
   `,
-  styles: `.hijri-datepicker-container {
+  styles: `
+  .year-popup {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid var(--primary-color, #000);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.year-list div {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.year-list div:hover {
+  background-color: var(--primary-color, #007bff);
+  color: white;
+}
+
+  .hijri-datepicker-container {
     position: relative;
     display: inline-block;
     width: 250px;
@@ -324,6 +357,7 @@ export class NgxHijriDatepickerComponent {
 
   selectedDate: moment.Moment | null = null; // Currently selected date / التاريخ المختار
   showDatePicker = false; // To control visibility of the datepicker popup / التحكم في إظهار التقويم
+  showYearPopup: boolean = false;  // إضافة الخاصية هنا
   currentViewDate: moment.Moment = moment().locale(this.locale);; // Currently displayed month in the popup / الشهر الحالي المعروض
   todayBtn:string = 'اليوم'
   onChange = (value: string) => {}; // Placeholder for Reactive Forms' change event / واجهة للتعامل مع التغييرات في Reactive Forms
@@ -470,4 +504,26 @@ export class NgxHijriDatepickerComponent {
   registerOnTouched(fn: any): void {
     this.onTouched = fn; // Store the callback function / تخزين دالة اللمس
   }
+
+  toggleYearPopup() {
+    this.showYearPopup = !this.showYearPopup;
+  }
+
+  selectYear(year: number) {
+    this.currentViewDate = this.currentViewDate.clone().iYear(year);
+    this.showYearPopup = false;
+  }
+
+  get hijriYears(): number[] {
+    const currentYear = moment().iYear();
+    const startYear = currentYear - 50;
+    const endYear = currentYear + 50;
+
+    const years = [];
+    for (let i = startYear; i <= endYear; i++) {
+      years.push(i);
+    }
+    return years;
+  }
+
 }

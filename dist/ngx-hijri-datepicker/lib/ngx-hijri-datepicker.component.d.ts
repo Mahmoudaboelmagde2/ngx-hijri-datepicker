@@ -21,6 +21,7 @@ export declare class NgxHijriDatepickerComponent {
     storageLocale: 'en' | 'ar-SA';
     selectedDate: moment.Moment | null;
     showDatePicker: boolean;
+    showYearPopup: boolean;
     currentViewDate: moment.Moment;
     todayBtn: string;
     onChange: (value: string) => void;
@@ -41,6 +42,9 @@ export declare class NgxHijriDatepickerComponent {
     writeValue(value: string): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
+    toggleYearPopup(): void;
+    selectYear(year: number): void;
+    get hijriYears(): number[];
     static ɵfac: i0.ɵɵFactoryDeclaration<NgxHijriDatepickerComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<NgxHijriDatepickerComponent, "ngx-hijri-datepicker", never, { "value": { "alias": "value"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "width": { "alias": "width"; "required": false; }; "height": { "alias": "height"; "required": false; }; "InputColor": { "alias": "InputColor"; "required": false; }; "InputBackgroundColor": { "alias": "InputBackgroundColor"; "required": false; }; "IconColor": { "alias": "IconColor"; "required": false; }; "IconBackgroundColor": { "alias": "IconBackgroundColor"; "required": false; }; "DayColor": { "alias": "DayColor"; "required": false; }; "BorderColor": { "alias": "BorderColor"; "required": false; }; "DatepickerPopupHeaderColor": { "alias": "DatepickerPopupHeaderColor"; "required": false; }; "displayFormat": { "alias": "displayFormat"; "required": false; }; "storageFormat": { "alias": "storageFormat"; "required": false; }; "locale": { "alias": "locale"; "required": false; }; "storageLocale": { "alias": "storageLocale"; "required": false; }; }, { "valueChange": "valueChange"; }, never, never, false, never>;
 }
