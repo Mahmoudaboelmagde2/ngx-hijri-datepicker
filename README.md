@@ -2,7 +2,7 @@
 
 ## Overview
 
-NgxHijriDatepickerModule is an Angular module for selecting Hijri dates. This module allows for customization of the appearance and behavior through various @Input properties. Additionally, it supports different locales for displaying and storing dates. The module also fully supports Arabic, Islamic, and Hijri month names, providing an authentic experience for users who prefer the Hijri calendar. This module allows for customization of the appearance and behavior through various @Input properties. Additionally, it supports different locales for displaying and storing dates.
+`NgxHijriDatepickerModule` is an Angular module for selecting Hijri dates. This module allows for customization of the appearance and behavior through various `@Input` properties. Additionally, it supports different locales for displaying and storing dates. The module also fully supports Arabic, Islamic, and Hijri month names, providing an authentic experience for users who prefer the Hijri calendar. This module allows for customization of the appearance and behavior through various `@Input` properties. Additionally, it supports different locales for displaying and storing dates.
 
 ---
 
@@ -14,12 +14,20 @@ NgxHijriDatepickerModule is an Angular module for selecting Hijri dates. This mo
 - Separate locales for display and storage
 - Emits selected date values through `EventEmitter`
 - Supports two-way data binding using `[(value)]`
-- Supports Reactive Forms `formControlName=""`
+- Supports Reactive Forms using `formControlName=''`
 - Responsive and accessible design
 
 ---
 
 ## Installation
+
+Install the datepicker module:
+
+```bash
+npm i ngx-hijri-datepicker
+```
+
+Then, import the module in your Angular project:
 
 ```typescript
 import { NgxHijriDatepickerModule } from 'ngx-hijri-datepicker';
@@ -157,9 +165,13 @@ this.dateForm = this.fb.group({
 - You can apply custom CSS to fully control the appearance of the datepicker. Override existing styles by targeting specific classes or using custom SCSS.
 
 - The `locale` property affects the **display** of the date (e.g., Arabic or English numerals and names).
+
 - The `storageLocale` property affects the **format** and **language** in which the date is stored.
+
 - If no `storageFormat` is provided, the component uses `displayFormat` as the default for storing dates.
+
 - The component listens for clicks outside the calendar to close the popup automatically.
+
 - Two-way data binding with `[(value)]` allows seamless synchronization of the selected date with component variables.
 
 ---
@@ -179,5 +191,5 @@ You can style the component by overriding CSS variables or customizing the SCSS 
 
 ## License
 
-This project is  free to use, modify, and distribute the software. However, the software is provided "as is", without warranty of any kind, express or implied.
+This project is  free to use, modify, and distribute the software. However, the software is provided "as is", without warranty of any kind, express or implied.&#x20;
 
