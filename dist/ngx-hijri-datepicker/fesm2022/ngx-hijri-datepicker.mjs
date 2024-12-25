@@ -172,7 +172,7 @@ class NgxHijriDatepickerComponent {
     }
     get hijriYears() {
         const currentYear = moment().iYear();
-        const startYear = currentYear - 1446;
+        const startYear = currentYear - 100;
         const endYear = currentYear + 100;
         const years = [];
         for (let i = startYear; i <= endYear; i++) {
